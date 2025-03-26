@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "21441949500",
-    "project_id": "fir-auth-7cafb",
-    "storage_bucket": "fir-auth-7cafb.firebasestorage.app"
+    "project_number": "913367731843",
+    "project_id": "fir-auth-ea0c8",
+    "storage_bucket": "fir-auth-ea0c8.firebasestorage.app"
   },
   "client": [
+    class path'com.google.gms.google-services:4.4.1'
     {
       "client_info": {
-        "mobilesdk_app_id": "1:21441949500:android:8cf8876a61ee6d9c167839",
+        "mobilesdk_app_id": "1:913367731843:android:613e83615e40510c14d5b6",
         "android_client_info": {
           "package_name": "com.example.skill_swap"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAOziBkG8Q3Tb8-Fu4xkA-AJCn-GWf9ucc"
+          "current_key": "AIzaSyBPlKQTBrMfcUvXeBwluTsePE_lJWpXIYo"
         }
       ],
       "services": {
