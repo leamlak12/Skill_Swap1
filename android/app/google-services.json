@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "21441949500",
+    "project_id": "fir-auth-7cafb",
+    "storage_bucket": "fir-auth-7cafb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21441949500:android:8cf8876a61ee6d9c167839",
+        "android_client_info": {
+          "package_name": "com.example.skill_swap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOziBkG8Q3Tb8-Fu4xkA-AJCn-GWf9ucc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
