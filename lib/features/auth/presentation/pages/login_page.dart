@@ -4,6 +4,7 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../data/services/auth_service.dart';
+import 'package:skill_swap/features/home/presentation/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,11 +34,6 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
-      if (mounted) {
-        // Navigate to home page or main app screen
-        // TODO: Replace with your home page route
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
     } catch (e) {
       setState(() {
         _errorMessage = e.toString();
