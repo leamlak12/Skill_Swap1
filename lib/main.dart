@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'features/auth/presentation/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'features/auth/presentation/pages/auth_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: const AuthWrapper(),
     );
   }
 }
