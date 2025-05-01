@@ -4,12 +4,16 @@ class CustomTextField extends StatefulWidget {
   final IconData icon;
   final String hintText;
   final bool isPassword;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
     required this.icon,
     required this.hintText,
     this.isPassword = false,
+    this.controller,
+    this.validator,
   });
 
   @override
@@ -26,13 +30,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(12),
       ),
-      child: TextField(
+      child: TextFormField(
+        controller: widget.controller,
+        validator: widget.validator,
         obscureText: widget.isPassword && _obscureText,
         decoration: InputDecoration(
           prefixIcon: Icon(widget.icon, color: Colors.grey),
           hintText: widget.hintText,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           suffixIcon: widget.isPassword
               ? IconButton(
                   icon: Icon(
@@ -50,4 +57,4 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
     );
   }
-} 
+}
