@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "913367731843",
-    "project_id": "fir-auth-ea0c8",
-    "storage_bucket": "fir-auth-ea0c8.firebasestorage.app"
+    "project_number": "31448730014",
+    "project_id": "skill-swap1-adfc7",
+    "storage_bucket": "skill-swap1-adfc7.firebasestorage.app"
   },
   "client": [
-    class path'com.google.gms.google-services:4.4.1'
     {
       "client_info": {
-        "mobilesdk_app_id": "1:913367731843:android:613e83615e40510c14d5b6",
+        "mobilesdk_app_id": "1:31448730014:android:792b8bee410f601c6eee8f",
         "android_client_info": {
           "package_name": "com.example.skill_swap"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBPlKQTBrMfcUvXeBwluTsePE_lJWpXIYo"
+          "current_key": "AIzaSyDhTOZTstvhYBiwVoQ-DZzNbjwift2JvE0"
         }
       ],
       "services": {

@@ -1,0 +1,2 @@
+C:/Users/firao/OneDrive/Desktop/New folder/Skill_Swap1/android/app/.cxx/Debug/r4j116q5/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/firao/OneDrive/Desktop/New folder/Skill_Swap1/android/app/.cxx/Debug/r4j116q5/x86_64/CMakeFiles/rebuild_cache.dir
