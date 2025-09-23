@@ -39,6 +39,8 @@ dependencies:
   firebase_auth: ^4.15.3
   cloud_firestore: ^4.13.6
   firebase_storage: ^11.5.6
+  flutter_launcher_icons: ^0.14.4
+  # flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +67,17 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-
+flutter_launcher_icons:
+   android: true
+   ios: true
+   image_path: "assets/images/sk.jpg" 
+# flutter_native_splash:
+#   color: "#ffffff"  # Background color
+#   image: assets/images/lamu.jpg  # Your splash image path
+#   android: true
+#   ios: true
+#   android_gravity: center  
+#   ios_content_mode: center 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
