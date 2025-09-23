@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_swap/features/auth/presentation/pages/forget_paasword.dart';
 import 'package:skill_swap/features/auth/presentation/pages/signup_page.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
@@ -140,7 +141,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const Spacer(),
                     TextButton(
-                      onPressed: () {},
+                       onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+    );
+  },
                       child: const Text(
                         'Forgot password',
                         style: TextStyle(color: Colors.blue),
