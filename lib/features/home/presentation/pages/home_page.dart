@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../data/models/course_model.dart';
-import '../widgets/course_card.dart';
+import 'package:skill_swap/features/home/data/models/course_model.dart';
+import 'package:skill_swap/features/home/presentation/widgets/course_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String _selectedCategory = "All";
 
   Future<void> _handleSignOut() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  // Filter courses by selected category
+  List<Course> _filterCourses(List<Course> courses) {
+    if (_selectedCategory == "All") return courses;
+    return courses
+        .where((course) => course.category == _selectedCategory)
+        .toList();
   }
 
   @override
@@ -66,6 +81,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+
             // Content
             SliverToBoxAdapter(
               child: SingleChildScrollView(
@@ -82,13 +98,40 @@ class HomePage extends StatelessWidget {
                           children: [
                             _CategoryChip(
                               label: 'All',
-                              isSelected: true,
+                              isSelected: _selectedCategory == "All",
+                              onTap: () =>
+                                  setState(() => _selectedCategory = "All"),
                             ),
-                            _CategoryChip(label: 'Design'),
-                            _CategoryChip(label: 'Development'),
-                            _CategoryChip(label: 'Marketing'),
-                            _CategoryChip(label: 'Business'),
-                            _CategoryChip(label: 'Photography'),
+                            _CategoryChip(
+                              label: 'Design',
+                              isSelected: _selectedCategory == "Design",
+                              onTap: () =>
+                                  setState(() => _selectedCategory = "Design"),
+                            ),
+                            _CategoryChip(
+                              label: 'Development',
+                              isSelected: _selectedCategory == "Development",
+                              onTap: () => setState(
+                                  () => _selectedCategory = "Development"),
+                            ),
+                            _CategoryChip(
+                              label: 'Marketing',
+                              isSelected: _selectedCategory == "Marketing",
+                              onTap: () =>
+                                  setState(() => _selectedCategory = "Marketing"),
+                            ),
+                            _CategoryChip(
+                              label: 'Business',
+                              isSelected: _selectedCategory == "Business",
+                              onTap: () =>
+                                  setState(() => _selectedCategory = "Business"),
+                            ),
+                            _CategoryChip(
+                              label: 'Photography',
+                              isSelected: _selectedCategory == "Photography",
+                              onTap: () => setState(
+                                  () => _selectedCategory = "Photography"),
+                            ),
                           ],
                         ),
                       ),
@@ -99,7 +142,7 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Recommended for you',
+                            'Courses',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -116,10 +159,12 @@ class HomePage extends StatelessWidget {
                         height: 320,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: Course.recommendedCourses.length,
+                          itemCount:
+                              _filterCourses(Course.recommendedCourses).length,
                           itemBuilder: (context, index) {
                             return CourseCard(
-                              course: Course.recommendedCourses[index],
+                              course: _filterCourses(
+                                  Course.recommendedCourses)[index],
                               isLarge: true,
                             );
                           },
@@ -146,13 +191,15 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       SizedBox(
-                        height: 280,
+                        height: 300,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: Course.trendingCourses.length,
+                          itemCount:
+                              _filterCourses(Course.trendingCourses).length,
                           itemBuilder: (context, index) {
                             return CourseCard(
-                              course: Course.trendingCourses[index],
+                              course:
+                                  _filterCourses(Course.trendingCourses)[index],
                             );
                           },
                         ),
@@ -165,11 +212,12 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+
+      // Bottom Nav
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         onTap: (index) {
-          // Handle profile tab tap
           if (index == 4) {
             showModalBottomSheet(
               context: context,
@@ -195,7 +243,6 @@ class HomePage extends StatelessWidget {
                     title: const Text('Settings'),
                     onTap: () {
                       Navigator.pop(context);
-                      // TODO: Navigate to settings
                     },
                   ),
                   ListTile(
@@ -212,26 +259,14 @@ class HomePage extends StatelessWidget {
           }
         },
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.play_circle_outline), label: 'My Learning'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
-          ),
+              icon: Icon(Icons.bookmark_border), label: 'Saved'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.play_circle_outline),
-            label: 'My Learning',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
-            label: 'Saved',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
+              icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
       ),
     );
@@ -241,10 +276,12 @@ class HomePage extends StatelessWidget {
 class _CategoryChip extends StatelessWidget {
   final String label;
   final bool isSelected;
+  final VoidCallback onTap;
 
   const _CategoryChip({
     required this.label,
-    this.isSelected = false,
+    required this.isSelected,
+    required this.onTap,
   });
 
   @override
@@ -254,7 +291,7 @@ class _CategoryChip extends StatelessWidget {
       child: FilterChip(
         label: Text(label),
         selected: isSelected,
-        onSelected: (bool value) {},
+        onSelected: (_) => onTap(),
         backgroundColor: Colors.grey[100],
         selectedColor: Colors.blue[100],
         checkmarkColor: Colors.blue[700],
