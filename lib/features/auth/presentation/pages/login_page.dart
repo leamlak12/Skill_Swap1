@@ -86,7 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 24),
                 // Email Field
-                CustomTextField(
+                CustomTextField
+                (
                   controller: _emailController,
                   icon: Icons.email_outlined,
                   hintText: 'Email address',
@@ -94,8 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                     if (value?.isEmpty ?? true) {
                       return 'Please enter an email';
                     }
-                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                        .hasMatch(value!)) {
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$')
+                        .hasMatch(value!.trim())) {
                       return 'Please enter a valid email';
                     }
                     return null;

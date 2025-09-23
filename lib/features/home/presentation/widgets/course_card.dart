@@ -117,7 +117,7 @@ class CourseCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
+                 SizedBox(height: 4),
                 // Instructor
                 Text(
                   course.instructor,
