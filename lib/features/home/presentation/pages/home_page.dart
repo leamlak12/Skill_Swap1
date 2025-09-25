@@ -279,7 +279,7 @@ class _HomeContentState extends State<HomeContent> {
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 300,
+                    height: 310,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: _filterCourses(Course.trendingCourses).length,
